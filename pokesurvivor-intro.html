@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>PokéSurvivor: A Free Pokémon Survival Game in Your Browser</title>
+<meta name="description" content="PokéSurvivor is a free browser Pokémon survival roguelite. One partner, endless hordes, 966 Pokémon across nine regions, 64 moves with 59 evolutions, 18 types and four-player co-op.">
+<link rel="canonical" href="https://pokesurvivor.club/">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<meta name="theme-color" content="#080b10">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="PokéSurvivor Guide">
+<meta property="og:title" content="PokéSurvivor: A Free Pokémon Survival Game in Your Browser">
+<meta property="og:description" content="One partner, an endless horde and 966 Pokémon across nine regions. What the free browser survival roguelite is, how a run works and what to know before you start.">
+<meta property="og:url" content="https://pokesurvivor.club/">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="PokéSurvivor: A Free Pokémon Survival Game in Your Browser">
+<meta name="twitter:description" content="One partner, endless hordes, 966 Pokémon across nine regions. A plain introduction to the free browser survival roguelite.">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "VideoGame",
+  "name": "PokéSurvivor",
+  "alternateName": ["PokeSurvivor", "Pokemon Survivor"],
+  "description": "A free, fan-made Pokémon survival roguelite that runs in a web browser. Players control a single partner, survive waves of wild Pokémon and build a run through automatic attacks, movement and level-up choices.",
+  "url": "https://pokesurvivor.club/",
+  "inLanguage": "en",
+  "applicationCategory": "Game",
+  "genre": ["Survival", "Roguelite", "Action"],
+  "gamePlatform": ["Web browser", "PC", "Mobile"],
+  "operatingSystem": "Any modern browser (PC, phone, tablet)",
+  "playMode": ["SinglePlayer", "CoOp"],
+  "numberOfPlayers": { "@type": "QuantitativeValue", "minValue": 1, "maxValue": 4 },
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD",
+    "availability": "https://schema.org/InStock"
+  }
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "PokéSurvivor: A Free Pokémon Survival Game in Your Browser",
+  "url": "https://pokesurvivor.club/",
+  "inLanguage": "en",
+  "dateModified": "2026-10-20",
+  "about": { "@type": "VideoGame", "name": "PokéSurvivor" }
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is PokéSurvivor free to play?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. PokéSurvivor is a free fan game with no in-game purchases. Partners, tickets and upgrades are earned by playing."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need to install anything?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. PokéSurvivor runs in a modern browser with JavaScript enabled. Installing an app is optional."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I play on a phone or tablet?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Use landscape orientation, drag the on-screen stick to move and tap a skill slot to switch attacks. Desktop players can use WASD or the arrow keys, number keys 1 to 4, Q and E, and Esc to pause."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How many Pokémon are in PokéSurvivor?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The roster lists 966 Pokémon across nine regions from Kanto to Paldea, including 29 Starters and 87 Legendaries. More partners are unlocked through regional gacha draws using tickets earned by playing."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does PokéSurvivor use the usual Pokémon type multipliers?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It uses softer modifiers: roughly x1.6 for super-effective attacks, x0.6 for resisted matchups and x0.3 for immunity matchups. Dual-type factors multiply together up to about x2.4, and weather can affect damage further."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do attacks and move switching work?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The move in your active slot attacks automatically. Switching slots changes which attack fires. Bonds earned from legendary victories let you fuse moves so everything in the selected slot fires together."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is PokéSurvivor an official Pokémon website?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. PokéSurvivor is an independent fan project, unaffiliated with Nintendo, GAME FREAK or The Pokémon Company."
+      }
+    }
+  ]
+}
+</script>
+
+<style>
+  :root{
+    --bg:#080b10;
+    --bg-soft:#0c1119;
+    --surface:rgba(255,255,255,.035);
+    --surface-2:rgba(255,255,255,.06);
+    --line:rgba(255,255,255,.09);
+    --line-strong:rgba(255,255,255,.16);
+    --text:#e9eef7;
+    --muted:#98a5b8;
+    --mint:#7bf1a8;
+    --amber:#ffcf5c;
+    --blue:#7aa2ff;
+    --radius:18px;
+    --max:1080px;
+    --font:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif;
+    --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;
+  }
+
+  *,*::before,*::after{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0;
+    font-family:var(--font);
+    background:
+      radial-gradient(1100px 620px at 76% -14%, rgba(123,241,168,.10), transparent 60%),
+      radial-gradient(880px 520px at 6% 2%, rgba(122,162,255,.10), transparent 62%),
+      var(--bg);
+    color:var(--text);
+    line-height:1.68;
+    -webkit-font-smoothing:antialiased;
+  }
+  img,svg{display:block;max-width:100%}
+
+  /* the single outbound link */
+  a{
+    color:var(--mint);
+    text-decoration:none;
+    border-bottom:1px solid rgba(123,241,168,.45);
+    transition:color .18s, border-color .18s;
+  }
+  a:hover{color:#a8f0d0;border-bottom-color:currentColor}
+  a:focus-visible{outline:2px solid var(--mint);outline-offset:3px;border-radius:4px}
+  h1,h2,h3,h4{line-height:1.15;letter-spacing:-.02em;margin:0 0 .5em}
+  p{margin:0 0 1em}
+  ul,ol{margin:0 0 1em;padding-left:1.15em}
+  li{margin:.35em 0}
+
+  .wrap{width:100%;max-width:var(--max);margin-inline:auto;padding-inline:clamp(1rem,4vw,2rem)}
+
+  /* header */
+  .site-head{
+    border-bottom:1px solid var(--line);
+    background:rgba(8,11,16,.6);
+  }
+  .head-inner{display:flex;align-items:center;gap:1rem;height:64px}
+  .brand{display:flex;align-items:center;gap:.55rem;font-weight:800;letter-spacing:-.03em;font-size:1.02rem}
+  .brand .dot{width:9px;height:9px;border-radius:50%;background:var(--mint);box-shadow:0 0 14px var(--mint)}
+  .head-tag{
+    margin-left:auto;font-size:.74rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);
+  }
+
+  /* hero */
+  .hero{padding:clamp(2.6rem,6vw,4.8rem) 0 clamp(2rem,4vw,3rem)}
+  .hero-grid{display:grid;gap:clamp(1.8rem,4vw,3rem);align-items:center}
+  @media(min-width:900px){.hero-grid{grid-template-columns:1.1fr .9fr}}
+
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:.5rem;
+    font-size:.74rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--mint);margin-bottom:1rem;
+  }
+  .eyebrow::before{content:"";width:22px;height:1px;background:currentColor;opacity:.7}
+
+  h1{font-size:clamp(2rem,4.6vw,3.3rem);font-weight:800;letter-spacing:-.035em}
+  h1 .grad{
+    background:linear-gradient(96deg,var(--mint) 0%,#a8f0d0 34%,var(--amber) 100%);
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .lede{font-size:clamp(1rem,1.5vw,1.12rem);color:var(--muted);max-width:56ch}
+  .lede strong{color:var(--text);font-weight:650}
+
+  .badges{display:flex;flex-wrap:wrap;gap:.45rem;list-style:none;padding:0;margin:1.5rem 0 0}
+  .badges li{
+    font-size:.76rem;font-weight:650;color:var(--muted);
+    border:1px solid var(--line);background:var(--surface);
+    padding:.32rem .6rem;border-radius:999px;
+  }
+
+  .hero-art{
+    position:relative;border-radius:24px;overflow:hidden;
+    border:1px solid var(--line);
+    background:linear-gradient(160deg,rgba(123,241,168,.08),rgba(122,162,255,.07) 55%,transparent);
+    aspect-ratio:1/1;
+  }
+  .hero-art svg{width:100%;height:100%}
+  .spin-slow{transform-origin:200px 200px;animation:spin 44s linear infinite}
+  .spin-rev{transform-origin:200px 200px;animation:spin 64s linear infinite reverse}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  @media(prefers-reduced-motion:reduce){.spin-slow,.spin-rev{animation:none}}
+
+  /* quick answer */
+  .quick{
+    margin-top:clamp(1.4rem,3vw,2.2rem);
+    border:1px solid rgba(123,241,168,.28);
+    background:linear-gradient(180deg,rgba(123,241,168,.075),rgba(123,241,168,.02));
+    border-radius:var(--radius);
+    padding:clamp(1.1rem,2.6vw,1.6rem);
+  }
+  .quick h2{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mint);margin-bottom:.6rem}
+  .quick p{margin:0;font-size:1.02rem}
+  .quick p + p{margin-top:.7rem;color:var(--muted);font-size:.95rem}
+
+  /* facts */
+  .facts{
+    display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;
+    background:var(--line);border:1px solid var(--line);border-radius:var(--radius);
+    overflow:hidden;margin-top:clamp(1.4rem,3vw,2rem);
+  }
+  @media(min-width:720px){.facts{grid-template-columns:repeat(3,minmax(0,1fr))}}
+  @media(min-width:1000px){.facts{grid-template-columns:repeat(6,minmax(0,1fr))}}
+  .fact{background:var(--bg-soft);padding:1.05rem .95rem;text-align:center}
+  .fact b{display:block;font-size:clamp(1.45rem,2.6vw,1.85rem);font-weight:800;letter-spacing:-.03em}
+  .fact span{display:block;font-size:.74rem;color:var(--muted);font-weight:600;margin-top:.15rem}
+
+  /* sections */
+  section{padding:clamp(2.6rem,6vw,4rem) 0}
+  .sec-head{max-width:64ch;margin-bottom:clamp(1.4rem,3vw,2.1rem)}
+  .sec-head h2{font-size:clamp(1.5rem,3vw,2.1rem);font-weight:800}
+  .sec-head p{color:var(--muted);margin:0}
+  .divider{height:1px;background:linear-gradient(90deg,transparent,var(--line-strong),transparent)}
+
+  .cards{display:grid;gap:1rem;grid-template-columns:1fr}
+  @media(min-width:760px){.cards{grid-template-columns:repeat(3,minmax(0,1fr))}}
+  .card{
+    border:1px solid var(--line);border-radius:var(--radius);
+    background:var(--surface);padding:1.35rem;
+    transition:border-color .2s, background .2s;
+  }
+  .card:hover{border-color:var(--line-strong);background:var(--surface-2)}
+  .card h3{font-size:1.05rem;margin-bottom:.45rem}
+  .card p{color:var(--muted);font-size:.93rem;margin:0}
+  .card .ico{
+    width:34px;height:34px;border-radius:10px;display:grid;place-items:center;
+    background:rgba(123,241,168,.12);border:1px solid rgba(123,241,168,.25);
+    color:var(--mint);margin-bottom:.85rem;font-size:.9rem;font-weight:800;
+  }
+
+  .steps{counter-reset:step;display:grid;gap:1rem;grid-template-columns:1fr}
+  @media(min-width:760px){.steps{grid-template-columns:repeat(2,minmax(0,1fr))}}
+  .step{
+    position:relative;border:1px solid var(--line);border-radius:var(--radius);
+    background:var(--surface);padding:1.3rem 1.3rem 1.3rem 4.1rem;
+  }
+  .step::before{
+    counter-increment:step;content:counter(step,decimal-leading-zero);
+    position:absolute;left:1.15rem;top:1.25rem;
+    font-family:var(--mono);font-size:.82rem;font-weight:700;color:var(--mint);
+    border:1px solid rgba(123,241,168,.3);border-radius:8px;
+    padding:.2rem .35rem;line-height:1;
+  }
+  .step h3{font-size:1rem;margin-bottom:.35rem}
+  .step p{color:var(--muted);font-size:.92rem;margin:0}
+
+  .regions{display:grid;gap:.8rem;grid-template-columns:repeat(2,minmax(0,1fr))}
+  @media(min-width:700px){.regions{grid-template-columns:repeat(3,minmax(0,1fr))}}
+  .region{
+    border:1px solid var(--line);border-radius:14px;
+    background:var(--surface);padding:1rem 1.05rem;
+    transition:border-color .2s, background .2s;
+  }
+  .region:hover{border-color:rgba(123,241,168,.35);background:rgba(123,241,168,.05)}
+  .region .gen{font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:700}
+  .region .name{display:flex;align-items:baseline;gap:.5rem;margin-top:.2rem}
+  .region .name b{font-size:1.02rem;letter-spacing:-.01em}
+  .region .count{font-family:var(--mono);font-size:.8rem;color:var(--mint);margin-top:.3rem}
+
+  .types{display:flex;flex-wrap:wrap;gap:.45rem;list-style:none;padding:0;margin:0 0 1.2rem}
+  .types li{
+    font-size:.79rem;font-weight:700;padding:.32rem .62rem;border-radius:8px;
+    border:1px solid;background:rgba(255,255,255,.03);
+  }
+  .mult{
+    display:grid;gap:.6rem;grid-template-columns:repeat(2,minmax(0,1fr));
+    border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);
+    padding:1.1rem;margin:0;
+  }
+  @media(min-width:720px){.mult{grid-template-columns:repeat(4,minmax(0,1fr))}}
+  .mult div{text-align:center}
+  .mult b{display:block;font-family:var(--mono);font-size:1.12rem;color:var(--amber)}
+  .mult span{font-size:.75rem;color:var(--muted);font-weight:600}
+
+  .controls{display:grid;gap:1rem;grid-template-columns:1fr}
+  @media(min-width:760px){.controls{grid-template-columns:repeat(2,minmax(0,1fr))}}
+  .panel{border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);padding:1.25rem}
+  .panel h3{font-size:.78rem;letter-spacing:.13em;text-transform:uppercase;color:var(--mint);margin-bottom:.9rem}
+  .kv{display:grid;grid-template-columns:auto 1fr;gap:.55rem .9rem;margin:0;font-size:.9rem}
+  .kv dt{color:var(--muted);font-weight:600}
+  .kv dd{margin:0}
+  kbd{
+    font-family:var(--mono);font-size:.78rem;font-weight:700;
+    background:rgba(255,255,255,.07);border:1px solid var(--line-strong);
+    border-bottom-width:2px;border-radius:6px;padding:.1rem .38rem;margin-right:.15rem;
+    display:inline-block;
+  }
+
+  .faq{display:grid;gap:.6rem}
+  details{
+    border:1px solid var(--line);border-radius:14px;background:var(--surface);
+    padding:0 1.1rem;transition:border-color .2s, background .2s;
+  }
+  details[open]{border-color:rgba(123,241,168,.3);background:rgba(123,241,168,.045)}
+  details:hover{border-color:var(--line-strong)}
+  summary{
+    cursor:pointer;list-style:none;padding:1rem 2rem 1rem 0;position:relative;
+    font-weight:650;font-size:.98rem;
+  }
+  summary::-webkit-details-marker{display:none}
+  summary::after{
+    content:"+";position:absolute;right:0;top:50%;transform:translateY(-50%);
+    font-size:1.15rem;font-weight:400;color:var(--mint);transition:transform .2s;
+  }
+  details[open] summary::after{transform:translateY(-50%) rotate(45deg)}
+  details .answer{padding:0 0 1.05rem;color:var(--muted);font-size:.93rem}
+  details .answer p:last-child{margin-bottom:0}
+
+  .closing{
+    border:1px solid rgba(123,241,168,.24);
+    border-radius:22px;
+    background:
+      radial-gradient(700px 240px at 50% -30%, rgba(123,241,168,.16), transparent 70%),
+      linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.015));
+    padding:clamp(1.7rem,4.5vw,2.8rem);
+  }
+  .closing h2{font-size:clamp(1.5rem,3.2vw,2.1rem)}
+  .closing p{color:var(--muted);margin-bottom:0;max-width:62ch}
+
+  .site-foot{border-top:1px solid var(--line);padding:2.2rem 0 3rem}
+  .foot-top{display:flex;flex-wrap:wrap;gap:1rem;align-items:center;justify-content:space-between}
+  .foot-top p{margin:0;color:var(--muted);font-size:.88rem;max-width:52ch}
+  .foot-note{
+    margin-top:1.4rem;padding-top:1.1rem;border-top:1px solid var(--line);
+    color:var(--muted);font-size:.78rem;display:flex;flex-wrap:wrap;gap:.4rem 1rem;justify-content:space-between;
+  }
+</style>
+</head>
+<body>
+
+<header class="site-head">
+  <div class="wrap head-inner">
+    <div class="brand">
+      <span class="dot" aria-hidden="true"></span>
+      Poké<span>Survivor</span>
+    </div>
+    <div class="head-tag">Game introduction</div>
+  </div>
+</header>
+
+<main>
+
+  <!-- ============ HERO ============ -->
+  <section class="hero" aria-labelledby="h1">
+    <div class="wrap">
+      <div class="hero-grid">
+        <div>
+          <p class="eyebrow">Free browser fan game</p>
+          <h1 id="h1">PokéSurvivor: the <span class="grad">Pokémon survivor game</span> that lives in a browser tab.</h1>
+          <p class="lede">
+            One partner. A horde that never stops growing. A build you shape one level-up at a time.
+            <strong>966 Pokémon across nine regions</strong>, 64 moves with 59 evolutions, 18 types and co-op for four —
+            and nothing to install.
+          </p>
+          <ul class="badges">
+            <li>Free to play</li>
+            <li>Runs in a browser</li>
+            <li>PC, phone &amp; tablet</li>
+            <li>1–4 players</li>
+            <li>Fan-made, unofficial</li>
+          </ul>
+        </div>
+
+        <div class="hero-art" role="img" aria-label="Abstract illustration of a lone survivor at the centre of a closing ring of enemies">
+          <svg viewBox="0 0 400 400" aria-hidden="true" focusable="false">
+            <defs>
+              <radialGradient id="core" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#b7ffd2" stop-opacity=".95"/>
+                <stop offset="55%" stop-color="#7bf1a8" stop-opacity=".32"/>
+                <stop offset="100%" stop-color="#7bf1a8" stop-opacity="0"/>
+              </radialGradient>
+              <linearGradient id="ring" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#7bf1a8" stop-opacity=".55"/>
+                <stop offset="100%" stop-color="#7aa2ff" stop-opacity=".12"/>
+              </linearGradient>
+            </defs>
+
+            <circle cx="200" cy="200" r="150" fill="url(#core)"/>
+            <g class="spin-slow" fill="none" stroke="url(#ring)" stroke-width="1">
+              <circle cx="200" cy="200" r="86" stroke-dasharray="3 9"/>
+              <circle cx="200" cy="200" r="124" stroke-dasharray="2 12"/>
+            </g>
+            <g class="spin-rev" fill="none" stroke="rgba(255,255,255,.12)" stroke-width="1">
+              <circle cx="200" cy="200" r="58"/>
+              <circle cx="200" cy="200" r="168" stroke-dasharray="1 16"/>
+            </g>
+
+            <g fill="#7aa2ff" opacity=".55">
+              <circle cx="200" cy="96" r="6"/><circle cx="271" cy="124" r="5"/>
+              <circle cx="300" cy="196" r="6"/><circle cx="266" cy="268" r="5"/>
+              <circle cx="196" cy="300" r="6"/><circle cx="126" cy="266" r="5"/>
+              <circle cx="100" cy="192" r="6"/><circle cx="132" cy="122" r="5"/>
+            </g>
+            <g fill="#ffcf5c" opacity=".75">
+              <circle cx="236" cy="140" r="4"/><circle cx="262" cy="204" r="4"/>
+              <circle cx="232" cy="262" r="4"/><circle cx="166" cy="258" r="4"/>
+              <circle cx="138" cy="198" r="4"/><circle cx="168" cy="142" r="4"/>
+            </g>
+
+            <circle cx="200" cy="200" r="30" fill="#052013" stroke="#7bf1a8" stroke-width="1.5"/>
+            <path d="M200 178 L219 189 L219 211 L200 222 L181 211 L181 189 Z"
+                  fill="none" stroke="#7bf1a8" stroke-width="1.5" opacity=".9"/>
+            <circle cx="200" cy="200" r="5" fill="#b7ffd2"/>
+          </svg>
+        </div>
+      </div>
+
+      <div class="quick">
+        <h2>Quick answer</h2>
+        <p>
+          <strong>PokéSurvivor</strong> is a free, fan-made <a href="https://pokesurvivor.club/">Pokémon survival roguelite</a> that runs in a modern web browser.
+          You control a single partner, your active move fires automatically, and you survive waves of wild Pokémon
+          while choosing upgrades. The roster covers <strong>966 Pokémon across nine regions</strong> from Kanto to Paldea,
+          with 64 moves, 59 move evolutions, 87 Legendaries, 18 types and online co-op for up to four players.
+        </p>
+        <p>
+          It is not an official Pokémon product. PokéSurvivor is an independent fan project, unaffiliated with Nintendo,
+          GAME FREAK or The Pokémon Company.
+        </p>
+      </div>
+
+      <div class="facts">
+        <div class="fact"><b>966</b><span>Playable Pokémon</span></div>
+        <div class="fact"><b>9</b><span>Regions, Kanto–Paldea</span></div>
+        <div class="fact"><b>64</b><span>Moves · 59 evolve</span></div>
+        <div class="fact"><b>87</b><span>Legendaries</span></div>
+        <div class="fact"><b>18</b><span>Types</span></div>
+        <div class="fact"><b>4</b><span>Player co-op</span></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap"><div class="divider" role="presentation"></div></div>
+
+  <!-- ============ WHAT KIND OF GAME ============ -->
+  <section aria-labelledby="h2-what">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">What kind of game it is</p>
+        <h2 id="h2-what">One partner, an endless map, and a build you assemble as you go</h2>
+        <p>
+          PokéSurvivor is a survival roguelite, not a turn-based RPG. You take a single partner onto an endless map,
+          survive escalating waves and shape a build through movement, automatic attacks and level-up choices.
+          Each attempt gives you room to refine the approach.
+        </p>
+      </div>
+
+      <div class="cards">
+        <article class="card">
+          <div class="ico" aria-hidden="true">⚡</div>
+          <h3>Automatic attacks, deliberate movement</h3>
+          <p>
+            Your active move fires on its own — your job is positioning. Read enemy patterns, step out of marked
+            attacks and keep an escape route open as the horde thickens.
+          </p>
+        </article>
+        <article class="card">
+          <div class="ico" aria-hidden="true">◈</div>
+          <h3>Types and weather shape your options</h3>
+          <p>
+            A move's type changes its damage against each enemy. Dual types combine matchup modifiers, and weather can
+            strengthen or weaken particular types. Check both before committing to a build.
+          </p>
+        </article>
+        <article class="card">
+          <div class="ico" aria-hidden="true">◉</div>
+          <h3>Survive together in four-player co-op</h3>
+          <p>
+            Online rooms hold up to four players. Experience is shared across the team, and staying near a fallen
+            teammate can pull them back into the fight.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ HOW A RUN WORKS ============ -->
+  <section aria-labelledby="h2-run">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">How a run works</p>
+        <h2 id="h2-run">From choosing a partner to surviving the horde</h2>
+        <p>The loop is short: pick a Pokémon, manage your active move, choose upgrades and always keep a way out.</p>
+      </div>
+
+      <div class="steps">
+        <article class="step">
+          <h3>Choose a partner and learn its attack</h3>
+          <p>Start with a Pokémon you enjoy. Watch how its opening move reaches enemies, then give yourself room to learn the range and rhythm before approaching a crowd.</p>
+        </article>
+        <article class="step">
+          <h3>Practise switching your active move</h3>
+          <p>Your selected move attacks automatically. Switch slots while the area is clear so you can answer a different enemy or matchup without hunting for the controls.</p>
+        </article>
+        <article class="step">
+          <h3>Collect experience and upgrade with a plan</h3>
+          <p>Gather experience when the route is safe, then read your level-up choices. Strengthen a useful attack, check its evolution requirement, and add defensive options as the run demands.</p>
+        </article>
+        <article class="step">
+          <h3>Keep moving toward an open route</h3>
+          <p>Watch the space ahead, avoid marked attacks and circle the edge of a horde. Turn wide when there is room, leave blocked paths early, and grab missed pickups only when it is safe.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap"><div class="divider" role="presentation"></div></div>
+
+  <!-- ============ ROSTER ============ -->
+  <section aria-labelledby="h2-roster">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">The roster</p>
+        <h2 id="h2-roster">Nine regions, one collection</h2>
+        <p>
+          966 partners are grouped by home region, matching the game's regional collection pools. Counts include each
+          region's Starter and Legendary entries.
+        </p>
+      </div>
+
+      <div class="regions">
+        <div class="region">
+          <div class="gen">Generation 1</div>
+          <div class="name"><b>Kanto</b></div>
+          <div class="count">151 Pokémon</div>
+        </div>
+        <div class="region">
+          <div class="gen">Generation 2</div>
+          <div class="name"><b>Johto</b></div>
+          <div class="count">100 Pokémon</div>
+        </div>
+        <div class="region">
+          <div class="gen">Generation 3</div>
+          <div class="name"><b>Hoenn</b></div>
+          <div class="count">135 Pokémon</div>
+        </div>
+        <div class="region">
+          <div class="gen">Generation 4</div>
+          <div class="name"><b>Sinnoh</b></div>
+          <div class="count">107 Pokémon</div>
+        </div>
+        <div class="region">
+          <div class="gen">Generation 5</div>
+          <div class="name"><b>Unova</b></div>
+          <div class="count">141 Pokémon</div>
+        </div>
+        <div class="region">
+          <div class="gen">Generation 6</div>
+          <div class="name"><b>Kalos</b></div>
+          <div class="count">70 Pokémon</div>
+        </div>
+        <div class="region">
+          <div class="gen">Generation 7</div>
+          <div class="name"><b>Alola</b></div>
+          <div class="count">83 Pokémon</div>
+        </div>
+        <div class="region">
+          <div class="gen">Generation 8</div>
+          <div class="name"><b>Galar</b></div>
+          <div class="count">87 Pokémon</div>
+        </div>
+        <div class="region">
+          <div class="gen">Generation 9</div>
+          <div class="name"><b>Paldea</b></div>
+          <div class="count">92 Pokémon</div>
+        </div>
+      </div>
+
+      <p style="margin-top:1.1rem;color:var(--muted);font-size:.88rem">
+        29 Starters and 87 Legendaries sit inside that 966-partner total. More partners are unlocked through regional
+        draws using tickets earned by playing.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ TYPES ============ -->
+  <section aria-labelledby="h2-types">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">Type matchups</p>
+        <h2 id="h2-types">Softer multipliers than the main-series games</h2>
+        <p>
+          All 18 types are in play. Compare your active move against the enemy's types, account for dual-type
+          modifiers and watch for weather changes before committing to a build.
+        </p>
+      </div>
+
+      <ul class="types" aria-label="The 18 types in PokéSurvivor">
+        <li style="color:#c9c9a4;border-color:#a8a77a">Normal</li>
+        <li style="color:#ffa96b;border-color:#ee8130">Fire</li>
+        <li style="color:#8fb3ff;border-color:#6390f0">Water</li>
+        <li style="color:#ffe27a;border-color:#f7d02c">Electric</li>
+        <li style="color:#9fe06f;border-color:#7ac74c">Grass</li>
+        <li style="color:#b7ecea;border-color:#96d9d6">Ice</li>
+        <li style="color:#ff8a84;border-color:#c22e28">Fighting</li>
+        <li style="color:#d187cf;border-color:#a33ea1">Poison</li>
+        <li style="color:#efd79a;border-color:#e2bf65">Ground</li>
+        <li style="color:#c3b0ff;border-color:#a98ff3">Flying</li>
+        <li style="color:#ff93b3;border-color:#f95587">Psychic</li>
+        <li style="color:#c3d457;border-color:#a6b91a">Bug</li>
+        <li style="color:#d3c47f;border-color:#b6a136">Rock</li>
+        <li style="color:#a892c4;border-color:#735797">Ghost</li>
+        <li style="color:#a68bff;border-color:#6f35fc">Dragon</li>
+        <li style="color:#a8968a;border-color:#705746">Dark</li>
+        <li style="color:#cfcfdc;border-color:#b7b7ce">Steel</li>
+        <li style="color:#f0a8c6;border-color:#d685ad">Fairy</li>
+      </ul>
+
+      <div class="mult">
+        <div><b>×1.6</b><span>Super effective</span></div>
+        <div><b>×0.6</b><span>Resisted</span></div>
+        <div><b>×0.3</b><span>Immunity matchup</span></div>
+        <div><b>×2.4</b><span>Dual-type ceiling</span></div>
+      </div>
+      <p style="margin-top:.9rem;color:var(--muted);font-size:.88rem">
+        Five weather states can shift damage further, and a move can evolve once it reaches its maximum level and
+        receives the required upgrade card.
+      </p>
+    </div>
+  </section>
+
+  <div class="wrap"><div class="divider" role="presentation"></div></div>
+
+  <!-- ============ CONTROLS ============ -->
+  <section aria-labelledby="h2-controls">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">Getting comfortable</p>
+        <h2 id="h2-controls">Easy to pick up, plenty to master</h2>
+        <p>Your active skill attacks automatically. These inputs cover movement, skill switching, pausing and upgrades.</p>
+      </div>
+
+      <div class="controls">
+        <div class="panel">
+          <h3>Desktop &amp; laptop</h3>
+          <dl class="kv">
+            <dt>Move</dt>
+            <dd><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> or arrow keys</dd>
+            <dt>Skill slot</dt>
+            <dd><kbd>1</kbd>–<kbd>4</kbd>, <kbd>Q</kbd>/<kbd>E</kbd>, or click a slot</dd>
+            <dt>Pause</dt>
+            <dd><kbd>Esc</kbd></dd>
+            <dt>Upgrades</dt>
+            <dd>Click a card or use its shown shortcut</dd>
+          </dl>
+        </div>
+        <div class="panel">
+          <h3>Phone &amp; tablet</h3>
+          <dl class="kv">
+            <dt>Move</dt>
+            <dd>Drag the on-screen stick</dd>
+            <dt>Skill slot</dt>
+            <dd>Tap a skill slot</dd>
+            <dt>Pause</dt>
+            <dd>Pause button</dd>
+            <dt>Upgrades</dt>
+            <dd>Tap a card</dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FAQ ============ -->
+  <section aria-labelledby="h2-faq">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">Good questions</p>
+        <h2 id="h2-faq">Things worth knowing before a first run</h2>
+        <p>Short answers to the questions new players ask most often.</p>
+      </div>
+
+      <div class="faq">
+        <details open>
+          <summary>Is PokéSurvivor free to play?</summary>
+          <div class="answer"><p>Yes. It is a free fan game with no in-game purchases. Partners, tickets and upgrades are earned by playing.</p></div>
+        </details>
+        <details>
+          <summary>Do I need to install anything?</summary>
+          <div class="answer"><p>No. It runs in a modern browser with JavaScript enabled. Installing an app is optional.</p></div>
+        </details>
+        <details>
+          <summary>Can I play on a phone or tablet?</summary>
+          <div class="answer"><p>Yes. Use landscape orientation, drag the movement stick to move and tap a skill slot to switch attacks. Desktop players can use keyboard and mouse.</p></div>
+        </details>
+        <details>
+          <summary>Where should a new player start?</summary>
+          <div class="answer"><p>Learn movement and move switching first, then develop one reliable attack. Everything else — evolutions, rifts, currencies — builds on that foundation.</p></div>
+        </details>
+        <details>
+          <summary>Will progress be saved?</summary>
+          <div class="answer"><p>Signing in to the game enables cloud saves and progress across devices. Guests can play immediately, but their progress is not saved.</p></div>
+        </details>
+        <details>
+          <summary>How do attacks and move switching work?</summary>
+          <div class="answer"><p>The move in your active slot attacks automatically. Switching slots changes which attack fires. Bonds earned from legendary victories let you fuse moves so everything in the selected slot fires together.</p></div>
+        </details>
+        <details>
+          <summary>How many Pokémon are there, and how are more unlocked?</summary>
+          <div class="answer"><p>966 across nine regions, including 29 Starters and 87 Legendaries. Additional partners come from regional gacha draws using tickets earned by playing.</p></div>
+        </details>
+        <details>
+          <summary>What is a legendary rift?</summary>
+          <div class="answer"><p>A Rift leads to a legendary encounter in one of 18 type arenas. A dual-type legendary randomly uses one of its types for the arena. In co-op, the whole group enters together.</p></div>
+        </details>
+        <details>
+          <summary>Does it use the usual Pokémon type multipliers?</summary>
+          <div class="answer"><p>No — the modifiers are softer: roughly ×1.6 for super-effective attacks, ×0.6 for resisted matchups and ×0.3 for immunity matchups. Dual-type factors multiply together up to about ×2.4, and weather can affect damage further.</p></div>
+        </details>
+        <details>
+          <summary>Is this an official Pokémon project?</summary>
+          <div class="answer"><p>No. PokéSurvivor is an independent fan project, unaffiliated with Nintendo, GAME FREAK or The Pokémon Company. All Pokémon names and related marks belong to their respective owners.</p></div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CLOSING ============ -->
+  <section aria-labelledby="h2-close">
+    <div class="wrap">
+      <div class="closing">
+        <h2 id="h2-close">The short version</h2>
+        <p>
+          PokéSurvivor takes the survival-roguelite loop — one character, automatic attacks, escalating waves — and
+          rebuilds it around a single Pokémon partner. The appeal is the tension between a build you plan and a map you
+          can never quite control: you choose the upgrades, but the horde decides how much room you get to use them.
+          With 966 partners, 64 moves and 59 evolutions, there is enough variety to keep refining a run long after the
+          first clear.
+        </p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="brand">
+        <span class="dot" aria-hidden="true"></span>
+        Poké<span>Survivor</span>
+      </div>
+      <p>An independent introduction to the free browser survival roguelite.</p>
+    </div>
+    <div class="foot-note">
+      <span>© 2026 PokéSurvivor Guide · Updated 20 October 2026</span>
+      <span>Unofficial fan project. Not affiliated with Nintendo, GAME FREAK or The Pokémon Company.</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
